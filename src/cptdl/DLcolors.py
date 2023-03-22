@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from typing import Tuple, List, Literal, Optional, Union, Callable, Iterable as Iterable
 from typing import NamedTuple
 import numpy as np
-#import math
+
 
 def graforientation(Horizontal,Vertical):
     if Horizontal>=Vertical:
@@ -92,9 +92,9 @@ def prepare_canvas(tailoring=None,predictand='PRCP',type=None):
 
     elif type=='probabilistic' :
         if 'PRCP' in predictand:
-            cmapB=cmaps['pycpt.probability_red_prec']#cmaps['cpt.pr_red']
-            cmapN=cmaps['pycpt.probability_green_prec']#cmaps['DL.RAINFALL_COLORMAP'] #cmaps['cpt.pr_green']
-            cmapA=cmaps['pycpt.probability_blue_prec']#cmaps['cpt.pr_blue']
+            cmapB=cmaps['pycpt.probability_red_prec']
+            cmapN=cmaps['pycpt.probability_green_prec']
+            cmapA=cmaps['pycpt.probability_blue_prec']
         elif any(x in predictand for x in ['TMAX','TMIN','TMEAN','TMED']):
             cmapB=cmaps['pycpt.probability_blue_temp']
             cmapN=cmaps['pycpt.probability_grey_temp']
@@ -161,17 +161,12 @@ def parse_colormap(s: str) -> np.ndarray:
     vs = []
     for x in s[1:-1].split(" "):
         vs = parse_color_item(vs, x)
-    # print(
-    #     "*** CM cm:",
-    #     len(vs),
-    #     [f"{v.red:02x}{v.green:02x}{v.blue:02x}{v.alpha:02x}" for v in vs],
-    # )
+
     rs = np.array([vs[int(i / 256.0 * len(vs))] for i in range(0, 256)], np.uint8)
     return rs
 
 #DL-Python_Colors
 RAINBOW_COLORMAP = "[16711680 [16776960 51] [65280 51] [65535 51] [255 51] [16711935 51]]"
-#RAINFALL_COLORMAP = "[16777215 16777215 12632256 12632256 14155730 [14155730 21] 12841150 [12841150 23] 10215830 [10215830 23] 7262835 [7262835 22] 6931300 [6931300 23] 5944410 [5944410 23] 5285200 [5285200 23] 4625990 [4625990 22] 3966780 [3966780 23] 3307570 [3307570 23] 2648360 [2648360 23] 1989150]"
 RAINFALL_COLORMAP = "[16777215 16777215 14155730 [14155730 21] 12841150 [12841150 23] 10215830 [10215830 23] 7262835 [7262835 22] 6931300 [6931300 23] 5944410 [5944410 23] 5285200 [5285200 23] 4625990 [4625990 22] 3966780 [3966780 23] 3307570 [3307570 23] 2648360 [2648360 23] 1989150]"
 RAIN_POE_COLORMAP = "[0 [2763429 38] [42495 39] [65535 39] 11920639 [11920639 24] [3329330 3] [13688896 37] [16711680 38] [15736992 39]]"
 RAIN_PNE_COLORMAP = "[15736992 [16711680 38] [13688896 39] [3329330 39] 11920639 [11920639 24] [65535 3] [42495 37] [2763429 38] [0 39]]"
@@ -263,7 +258,3 @@ def get_colors_bars(cmaps=cmaps):
         axes[i, 1].axis('off')
         axes[i, 0].imshow(data, cmap=cmaps[cmap])
         axes[i, 1].text(0, 0.5, cmap, va='center', fontsize=10)
-
-#for key in cmaps.keys():
-#    cm.register_cmap(name=key, cmap=make_cmap(cmaps[key], key), override_builtin=True)
-#    cm.register_cmap(name=key+'_r', cmap= make_cmap(cmaps[key], key+'_r', reverse=False), override_builtin=True)
