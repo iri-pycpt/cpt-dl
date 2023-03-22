@@ -1,21 +1,21 @@
 from setuptools import *
-import os
+from pathlib import Path
 
-with open('{}/../README.md'.format(os.getenv('RECIPE_DIR')), 'r', encoding='utf-8') as fh:
+with open(Path(__file__ ).parent / '../README.md', 'r', encoding='utf-8') as fh:
 	long_description= fh.read()
 
 
 setup(
     name = "cptdl",
-    version = "1.0.5",
+    version = "1.0.6",
     author = "Kyle Hall",
-    author_email = "kjhall@iri.columbia.edu",
+    author_email = "pycpt-help@iri.columbia.edu",
     description = ("Tools bridging Xarray and CPT"),
     license = "MIT",
-    keywords = ["climate", 'predictability', 'prediction', 'precipitation', 'temperature', 'data', 'IRI'],
+    keywords = ["climate", 'predictability', 'prediction', 'precipitation', 'temperature', 'data', 'IRI', 'DL'],
     url = "https://iri.columbia.edu/our-expertise/climate/tools/",
     packages=[  'cptdl',  ],
-	package_dir={ 'cptdl': '{}/../src'.format(os.getenv('RECIPE_DIR')),                   },
+	package_dir={ 'cptdl': Path(__file__ ).parent / '../src',                },
 	python_requires=">=3.0",
     long_description=long_description,
 	long_description_content_type='text/markdown',
