@@ -1,7 +1,6 @@
 from .utilities import *
 from .catalog import *
 from .targetleadconv import *
-from .DLcolors import *
 
 
 __author__ = 'Kyle J. C. Hall (pycpt-help@iri.columbia.edu)'
